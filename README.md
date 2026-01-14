@@ -1,42 +1,61 @@
-# .
 
-This template should help get you started developing with Vue 3 in Vite.
+# Notification System Client
 
-## Recommended IDE Setup
+A Vue 3 application built with TypeScript and Vite that allows users to send notifications and view a history of notification logs. This client interacts with a backend service (typically a Spring Boot application).
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## 📋 Prerequisites
 
-## Recommended Browser Setup
+- **Node.js**: Version `20.19.0` or higher (or `22.12.0+`).
+- **Backend Service**: Ensure the Notification System backend is running on `http://localhost:8080`.
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+## 🚀 Setup & Installation
 
-## Type Support for `.vue` Imports in TS
+1. **Clone the repository**
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+   ```bash
+   git clone <repository-url>
+   cd notifications-client
+   ```
+2. **Install dependencies**
 
-## Customize configuration
+   ```bash
+   npm install
+   ```
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## 💻 Running the Application
 
-## Project Setup
+### Development Mode
 
-```sh
-npm install
-```
+Start the development server with hot-reload:
 
-### Compile and Hot-Reload for Development
-
-```sh
+```bash
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+The application will be available at `http://localhost:5173` (default Vite port).
 
-```sh
+### Production Build
+
+Type-check, compile, and minify for production:
+
+```bash
 npm run build
 ```
+
+The output files will be in the `dist/` directory.
+
+### Type Checking
+
+Run TypeScript type checking:
+
+```bash
+npm run type-check
+```
+
+## 🛠️ Tech Stack
+
+- **Framework**: Vue 3 (Composition API)
+- **Build Tool**: Vite
+- **Language**: TypeScript
+- **HTTP Client**: Axios
+- **Routing**: Vue Router

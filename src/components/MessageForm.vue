@@ -14,6 +14,8 @@ const messageBody = ref('');
 const isSubmitting = ref(false);
 const errorMessage = ref('');
 const successMessage = ref('');
+const showModal = ref(false);
+const modalMessage = ref('');
 
 const categories: Category[] = ['SPORTS', 'FINANCE', 'MOVIES'];
 
@@ -40,7 +42,12 @@ const handleSubmit = async () => {
     emit('message-sent'); // Trigger refresh in parent
   } catch (error) {
     if (error instanceof Error) {
-      errorMessage.value = error.message;
+      if (error.message === 'BACKEND_UNAVAILABLE') {
+        modalMessage.value = 'The backend service is currently unavailable. Please try again later.';
+        showModal.value = true;
+      } else {
+        errorMessage.value = error.message;
+      }
     } else {
       errorMessage.value = 'An unexpected error occurred.';
     }
@@ -81,6 +88,16 @@ const handleSubmit = async () => {
       <button type="submit" :disabled="isSubmitting" class="btn-submit">
         {{ isSubmitting ? 'Sending...' : 'Send Message' }}
       </button>
+
+      <Teleport to="body">
+        <div v-if="showModal" class="modal-overlay">
+          <div class="modal-content">
+            <h3>Service Unavailable</h3>
+            <p>{{ modalMessage }}</p>
+            <button @click="showModal = false" class="btn-close" type="button">Close</button>
+          </div>
+        </div>
+      </Teleport>
     </form>
   </div>
 </template>
@@ -134,4 +151,37 @@ const handleSubmit = async () => {
 }
 .error { background-color: #fdecea; color: #e74c3c; }
 .success { background-color: #eafaf1; color: #2ecc71; }
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+}
+
+.btn-close {
+  margin-top: 1rem;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
 </style>

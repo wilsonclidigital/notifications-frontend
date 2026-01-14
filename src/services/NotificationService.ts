@@ -22,6 +22,9 @@ class NotificationService {
       await this.apiClient.post('/notifications/send', payload);
     } catch (error) {
       console.error('Error sending notification:', error);
+      if (axios.isAxiosError(error) && error.code === 'ERR_NETWORK') {
+        throw new Error('BACKEND_UNAVAILABLE');
+      }
       throw new Error('Failed to send notification. Please try again.');
     }
   }
