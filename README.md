@@ -52,6 +52,14 @@ Run TypeScript type checking:
 npm run type-check
 ```
 
+## 🧪 Testing 
+
+This project uses Vitest for unit testing. Test files are located in __tests__ directories alongside the source code they are testing. 
+
+### Running Unit Tests + +To execute the test suite, run the following command: 
+
+npm run test:unit
+
 ## 🛠️ Tech Stack
 
 - **Framework**: Vue 3 (Composition API)
