@@ -56,7 +56,9 @@ npm run type-check
 
 This project uses Vitest for unit testing. Test files are located in __tests__ directories alongside the source code they are testing. 
 
-### Running Unit Tests + +To execute the test suite, run the following command: 
+### Running Unit Tests 
+
+To execute the test suite, run the following command: 
 
 npm run test:unit
 
