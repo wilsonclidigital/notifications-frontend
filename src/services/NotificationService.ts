@@ -6,7 +6,7 @@ class NotificationService {
 
   constructor() {
     this.apiClient = axios.create({
-      baseURL: 'http://localhost:8080/api', // Adjust based on your Spring Controller mapping
+      baseURL: 'http://localhost:8090/api', // Adjust based on your Spring Controller mapping
       headers: {
         'Content-Type': 'application/json',
       },

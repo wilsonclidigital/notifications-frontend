@@ -1,28 +1,7 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import { notificationService } from '@/services/NotificationService';
-import type { LogRecord } from '@/types';
+import { useLogHistory } from '@/composables/useLogHistory';
 
-const logs = ref<LogRecord[]>([]);
-const isLoading = ref(false);
-const error = ref('');
-
-const fetchLogs = async () => {
-  isLoading.value = true;
-  error.value = '';
-  try {
-    logs.value = await notificationService.getLogHistory();
-  } catch (err) {
-    error.value = 'Failed to load history.';
-  } finally {
-    isLoading.value = false;
-  }
-};
-
-// Initial fetch
-onMounted(() => {
-  fetchLogs();
-});
+const { logs, isLoading, error, fetchLogs } = useLogHistory();
 
 // Expose fetchLogs to parent
 defineExpose({ fetchLogs });
