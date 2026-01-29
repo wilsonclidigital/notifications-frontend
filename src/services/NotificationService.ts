@@ -22,10 +22,21 @@ class NotificationService {
       await this.apiClient.post('/notifications/send', payload);
     } catch (error) {
       console.error('Error sending notification:', error);
-      if (axios.isAxiosError(error) && error.code === 'ERR_NETWORK') {
-        throw new Error('BACKEND_UNAVAILABLE');
+      if (axios.isAxiosError(error)) {
+        if (error.response) {
+          switch (error.response.status) {
+            case 400:
+              throw new Error('Bad Request: Please check your input.');
+            case 500:
+              throw new Error('Internal Server Error: Please try again later.');
+            case 503:
+              throw new Error('Service Unavailable: The service is temporarily down.');
+          }
+        } else if (error.request) {
+          throw new Error('Network Error: Could not connect to the server.');
+        }
       }
-      throw new Error('Failed to send notification. Please try again.');
+      throw new Error('An unexpected error occurred.');
     }
   }
 
