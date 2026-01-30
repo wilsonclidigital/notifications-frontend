@@ -25,7 +25,11 @@ export default defineConfig({
       'App.spec.ts', 
       'src/services/useLogHistory.spec.ts', 
       'src/services/useMessageForm.spec.ts', 
-      'src/components/__tests__/HomeView.spec.ts'
+      'src/components/__tests__/HomeView.spec.ts',
+      'useLogHistory.spec.ts',
+      'useMessageForm.spec.ts',
+      'NotificationService.spec.ts',
+      'src/services/NotificationService.spec.ts'
     ],
     coverage: {
       provider: 'v8',
