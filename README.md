@@ -62,6 +62,14 @@ To execute the test suite, run the following command:
 
 npm run test:unit
 
+### Test Coverage
+
+To generate a code coverage report, run the following command:
+
+```bash
+npm run test:coverage
+```
+
 ## 🛠️ Tech Stack
 
 - **Framework**: Vue 3 (Composition API)
